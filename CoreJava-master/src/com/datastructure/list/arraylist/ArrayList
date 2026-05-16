@@ -1,0 +1,51 @@
+ Most people prefer to implement a list as a linked list , 
+ but what most people miss, is that lists can also be implemented using arrays.
+ 
+ A list is kind of a stack combined with a queue; with additional feature of looking at the middle elements.
+ Preferably, a list should also contain the current number of elements.
+ 
+	 The class contains four data elements: array, start, end, and number. 
+	 The number is the number of elements inside the array. 
+	 The start is the starting pointer, and the end is the ending pointer inside the array (kind of like the queue design).
+	 
+	 The constructor, pArrayList(), and methods isEmpty(), isFull(), and size(), are pretty much self explanatory. 
+	 
+	 The insert() method works exactly the same way as an equivalent queue method. 
+	 It just increments the start pointer, does a mod (the % symbol), and inserts into the resulting position.
+ 
+  	The insertEnd(Object) method, first checks that there is enough space inside the array. 
+  	It then inserts the element into the end location. The next trick is to decrement the end pointer, 
+  	add the array.length, and do a mod with array.length. 
+  	This had the effect of moving the end pointer backwards (as if we had inserted something at the end).
+
+    The Object remove() method works on a very similar principle. 
+    First, it checks to see if there are elements to remove, if not, it simply returns a null (no Object). 
+    It then decrements number. 
+    We're keeping track of this number inside all insertion and removal methods, 
+    so that it always contains the current number of elements. 
+    We then create a temporary variable to hold the current position of the start pointer. 
+    After that, we update the start pointer by first decrementing it, adding array.length to it, 
+    and doing a mod with array.length. 
+    This gives the appearance of removing an element from the front of the list. 
+    We later return the position inside the array, which we've saved earlier inside that temporary variable 'i'.
+
+    The Object removeEnd() works similar to the insert() method. 
+    It checks to see if there are elements to remove by calling isEmpty() method, 
+    if there aren't, it returns null. 
+    It then handles the number (number of elements) business, and proceeds with updating the end pointer. 
+    It first increments the end pointer, and then does a mod with array.length, 
+    and returns the resulting position.
+
+    This next Object peek(int n) method is the most tricky one. 
+    It accepts an integer, and we need to return the number which this integer is pointing to. 
+    This would be no problem if we were using an array that started at 0, 
+    but we're using our own implementation, and the list doesn't necessarily start at array position 0. 
+    We start this by checking if the parameter 'n' is not greater than the number of elements, 
+    if it is, we return null (since we don't want to go past the bounds of the array). 
+    What we do next is add 'n' (the requesting number) to an incremented end pointer, 
+    and do a mod array.length. 
+    This way, it appears as if this function is referencing the array from 0 
+    (while the actual start is the incremented end pointer).
+    
+    
+    

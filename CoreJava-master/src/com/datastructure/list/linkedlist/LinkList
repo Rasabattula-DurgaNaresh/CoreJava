@@ -1,0 +1,60 @@
+http://www.theparticle.com/javadata2.html#Arrays
+
+A linked list is just a chain of nodes, with each subsequent node being a child of the previous one. 
+Many programs rely on linked lists for their storage because these don't have any evident restrictions. 
+For example, the array list we did earlier could not grow or shrink, but node based ones can! 
+This means there is no limit (other than the amount of memory) on the number of elements they can store.
+
+A linked list has just one node, that node, has links to subsequent nodes. 
+So, the entire list can be referenced from that one node. 
+That first node is usually referred to as the head of the list. 
+The last node in the chain of nodes usually has some special feature to let us know that it's last. 
+That feature, most of the time is a null pointer to the next node.
+
+[node0]->[node1]->[node2]->[node3]->[node4]->null
+
+In it, node0 is the head node, and node4 is the last node, because it's pointer points to null. 
+
+	There are two data members, one named head, and the other named number. 
+	Head is the first node of the list, and number is the total number of nodes in the list. 
+	Number is primarily used for the size() method. 
+	The constructor, pLinkedList() is self explanatory. The size() and isEmpty() methods are also pretty easy.
+	
+	Here comes the hard part, the insertion and removal methods. 
+	Method insert(Object) creates a new pOneChildNode object with next pointer pointing to the current head, 
+	and data the data which is inserted. 
+	It then sets the head to that new node. 
+	If you think about it, you'll notice that the head is still saved, and the new node points to it.
+	
+	Method Object remove() works in a very similar fashion, but instead of inserting, it is removing. 
+	It first checks to see if the list is isEmpty() or not, if it is, it returns a null. 
+	It then saves the current head node, and then changes it to accommodate the removal (think about the logic), 
+	decrements the number, and returns the data from the previously saved node.
+	
+	In the method insertEnd(Object), we're actually inserting at the end of the list.
+	We first check to see if the list is isEmpty(), if it is, we do a regular insertion 
+	(since it really doesn't matter which direction we're coming from if the list is empty). 
+	We then setup a loop to search for the end. 
+	The end is symbolized by the next pointer of the node being null. 
+	When we get to the end, we create a new node, and place it at the end location. 
+	Incrementing number before we return.
+	
+	Method Object removeEnd() works in a similar fashion as insertend(Object) method. 
+	It also goes through the whole list to look for the end. 
+	At the beginning, we check if the list is not isEmpty(), if it is, we return a null. 
+	We then check to see if there is only one element in the list, if there is only one, 
+	we remove it using regular remove(). 
+	We then setup a loop to look for the node who's child is the last node. 
+	It is important to realize that if we get to the last node, we won't be able to erase it; 
+	we need the last node's parent node. 
+	When we find it, we get the data, setup necessary links, decrement number, and return the data.
+
+    The Object peek(int) method simply goes through the list until it either reaches the element requested, 
+    or the end of the list. 
+    If it reaches the end, it should return a null, if not, it should return the correct location inside the list.
+    
+    In a circular list, the last node is not pointing to null, but to the first node (creating a circle). 
+    Sometimes, lists are also implemented using two pointers; 
+    and there are many other variations you should consider and try yourself. 
+    You can even make it faster by having a "dummy" first node and/or "tail" node. 
+    This will eliminate most special cases, making it faster on insertions and deletions.

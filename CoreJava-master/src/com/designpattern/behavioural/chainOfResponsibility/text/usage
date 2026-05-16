@@ -1,0 +1,4 @@
+Chain of Responsibility Pattern Examples in JDK
+
+java.util.logging.Logger#log()
+javax.servlet.Filter#doFilter() 

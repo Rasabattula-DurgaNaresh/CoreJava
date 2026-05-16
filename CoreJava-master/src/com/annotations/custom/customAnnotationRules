@@ -1,0 +1,50 @@
+Creating Custom Annotations
+
+To create a custom annotation, you must use the keyword “@interface“. Other important things to remember while creating custom annotations are listed below:
+
+1)	Each method declaration defines an element of the annotation type.
+2)	Method declarations must not have any parameters or a throws clause.
+3)	Return types are restricted to primitives, String, Class, enums, annotations, and arrays of the preceding types.
+4)	Methods can have default values.
+
+Example 1
+
+// Declares the annotation DemoAnnotation without any value
+public @interface DemoAnnotation {
+}
+ 
+//Use the annotation like below
+ 
+@DemoAnnotation
+public void toggle() {
+}
+Example 2
+
+public @interface Author {
+    String first();
+    String last();
+}
+ 
+//Use the annotation like below
+ 
+@Author(first = "Lokesh", last = "Gupta")
+Book book = new Book();
+Example 3
+
+public @interface TravelRequest {
+    int    id();
+    String synopsis();
+    String engineer() default "[unassigned]";
+    String date()    default "[unimplemented]";
+}
+ 
+//Use the annotation like below
+ 
+@TravelRequest(
+    id       = 112233,
+    synopsis = "Teleport me",
+    engineer = "Mr. John Carter",
+    date     = "04/01/3007"
+)
+public static void sendMeToMars () {
+}

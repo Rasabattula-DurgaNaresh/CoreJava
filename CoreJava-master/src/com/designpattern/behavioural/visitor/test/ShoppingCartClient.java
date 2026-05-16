@@ -1,0 +1,36 @@
+package com.designpattern.behavioural.visitor.test;
+
+import com.designpattern.behavioural.visitor.Book;
+import com.designpattern.behavioural.visitor.Fruit;
+import com.designpattern.behavioural.visitor.ItemElement;
+import com.designpattern.behavioural.visitor.ShoppingCartVisitor;
+import com.designpattern.behavioural.visitor.ShoppingCartVisitorImpl;
+/**
+ * 
+ * @author pardeshi_n
+ *Notice that implementation if accept() method in all the items are 
+ *same but it can be different, for example there can be logic to check if 
+ *item is free then don’t call the visit() method at all.
+ */
+public class ShoppingCartClient {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		ItemElement[] items = new ItemElement[]{new Book(20, "1234"),new Book(100, "5678"),
+                new Fruit(10, 2, "Banana"), new Fruit(5, 5, "Apple")};
+		int total = calculatePrice(items);
+        System.out.println("Total Cost = "+total);
+	}
+	
+	 private static int calculatePrice(ItemElement[] items) {
+	        ShoppingCartVisitor visitor = new ShoppingCartVisitorImpl();
+	        int sum=0;
+	        for(ItemElement item : items){
+	            sum = sum + item.accept(visitor);
+	        }
+	        return sum;
+	    }
+
+}

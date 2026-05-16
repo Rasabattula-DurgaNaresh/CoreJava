@@ -1,0 +1,5 @@
+Abstract Factory Pattern Examples in JDK
+
+javax.xml.parsers.DocumentBuilderFactory#newInstance()
+javax.xml.transform.TransformerFactory#newInstance()
+javax.xml.xpath.XPathFactory#newInstance()

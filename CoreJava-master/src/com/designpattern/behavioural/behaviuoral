@@ -1,0 +1,39 @@
+Behavioral Design Patterns
+
+1)	Chain of Responsibility Pattern
+	A method called in one class can move up a hierarchy to find an 
+	object that can properly execute the method.
+	
+2)	Command Pattern
+	An object encapsulates everything needed to execute a method in another object.
+
+3)	Interpreter Pattern
+	Define a macro language and syntax, parsing input into objects which perform the correct opertaions.
+
+4)	Iterator Pattern
+	One object can traverse the elements of another object.
+
+5)	Mediator Pattern
+	An object distributes communication between two or more objects.
+
+6)	Memento Pattern
+	One object stores another objects state.
+
+7)	Observer Pattern
+	An object notifies other object(s) if it changes.
+
+8)	State Pattern
+	An object appears to change its` class when the class it passes calls 
+	through to switches itself for a related class.
+
+9)	Strategy Pattern
+	An object controls which of a family of methods is called. 
+	Each method is in its` own class that extends a common base class.
+
+10)	Template Method Pattern
+	An abstract class defines various methods, and has one non-overridden method 
+	which calls the various methods.
+
+11)	Visitor Pattern
+	One or more related classes have the same method, which calls a method specific 
+	for themselves in another class.

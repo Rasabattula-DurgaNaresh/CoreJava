@@ -1,0 +1,45 @@
+ a) You can’t have static field of type
+
+	You can not define a static generic parametrized member in your class. 
+	Any attempt to do so will generate compile time error: 
+	Cannot make a static reference to the non-static type T.
+	
+	public class GenericsExample<T>
+	{
+	   private static T member; //This is not allowed
+	}
+	
+b) You can not create an instance of T
+
+	Any attempt to create an instance of T will fail with error: Cannot instantiate the type T.
+	
+	public class GenericsExample<T>
+	{
+	   public GenericsExample(){
+	      new T();
+	   }
+	}
+	
+c) Generics are not compatible with primitives in declarations
+
+	Yes, it’s true. You can’t declare generic expression like List or Map<String, double>. 
+	Definitely you can use the wrapper classes in place of primitives 
+	and then use primitives when passing the actual values. 
+	These value primitives are accepted by using auto-boxing to convert primitives to respective wrapper classes.
+	
+	final List<int> ids = new ArrayList<>();    //Not allowed
+	 
+	final List<Integer> ids = new ArrayList<>(); //Allowed
+	
+d) You can’t create Generic exception class
+
+	Sometimes, programmer might be in need of passing an instance of generic type along with exception being thrown. 
+	This is not possible to do in Java.
+	
+	// causes compiler error
+	public class GenericException<T> extends Exception {}
+	When you try to create such an exception, you will end up with message like this: 
+	The generic class GenericException may not subclass java.lang.Throwable.
+	
+	
+	

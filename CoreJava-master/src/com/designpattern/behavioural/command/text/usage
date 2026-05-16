@@ -1,0 +1,3 @@
+Command Pattern JDK Example
+
+Runnable interface (java.lang.Runnable) and Swing Action (javax.swing.Action) uses command pattern. 

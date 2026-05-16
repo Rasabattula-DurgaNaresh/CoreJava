@@ -1,0 +1,24 @@
+Important things to remember
+
+1) Always use same attributes of an object to generate hashCode() and equals() both. As in our case, we have used employee id.
+
+2) equals() must be consistent (if the objects are not modified, then it must keep returning the same value).
+
+3) Whenever a.equals(b), then a.hashCode() must be same as b.hashCode().
+
+4) If you override one, then you should override the other.
+
+Special Attention When Using in ORM
+
+If you’re dealing with an ORM, make sure to always use getters, 
+and never field references in hashCode() and equals(). 
+This is for reason, in ORM, occasionally fields are lazy loaded and not available until called their getter methods.
+
+For example, 
+In our Employee class if we use e1.id == e2.id. 
+It is very much possible that id field is lazy loaded. 
+So in this case, one might be zero or null, and thus resulting in incorrect behavior.
+
+But if uses e1.getId() == e2.getId(), 
+we can be sure even if field is lazy loaded; 
+calling getter will populate the field first.

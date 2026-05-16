@@ -1,0 +1,27 @@
+http://www.theparticle.com/javadata2.html#Arrays
+
+The next major set of data structures belongs to what's called Trees. 
+They are called that, because if you try to visualize the structure, 
+it kind of looks like a tree (root, branches, and leafs). 
+Trees are node based data structures, meaning that they're made out of small parts called nodes. 
+You already know what a node is, and used one to build a linked list. 
+Tree Nodes have two or more child nodes; unlike our list node, which only had one child.
+
+Trees are named by the number of children their nodes have. 
+For example, if a tree node has two children, it is called a binary tree. 
+If it has three children, it is called tertiary tree. 
+If it has four children, it is called a quad tree, and so on. 
+Fortunately, to simplify things, we only need binary trees. 
+With binary trees, we can simulate any tree; so the need for other types of trees only 
+becomes a matter of simplicity for visualization.
+
+Since we'll be working with binary trees, lets write a binary tree node. 
+It's not going to be much different from our pOneChildNode class; 
+actually, it's going to be quite the same, only added support for one more pointer.
+
+	The children of the node are named left and right; these will be the left branch of the node and a right branch. 
+	If a node has no children, it is called a leaf node. 
+	If a node has no parent (it's the father of every node), it is called the root of the tree. 
+	This weird terminology comes from the tree analogy, and from the family tree analogy.
+	
+	

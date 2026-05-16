@@ -1,0 +1,4 @@
+Iterator Pattern in JDK
+
+We all know that Collection framework Iterator is the best example of iterator pattern implementation 
+but do you know that java.util.Scanner class also Implements Iterator interface. 

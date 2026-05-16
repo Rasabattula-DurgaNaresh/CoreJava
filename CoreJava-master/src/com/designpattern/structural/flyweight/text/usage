@@ -1,0 +1,4 @@
+Flyweight Pattern Example in JDK
+
+All the wrapper classes valueOf() method uses cached objects showing use of Flyweight design pattern. 
+The best example is Java String class String Pool implementation. 

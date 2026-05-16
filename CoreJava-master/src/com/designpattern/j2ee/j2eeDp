@@ -1,0 +1,50 @@
+The purpose of these design patterns is given below:
+
+1)	Front Controller 
+	Centralize access for presentation layer request handling. 
+	The Filter Controller strategy is commonly used.
+	
+2)	Application Controller 
+	Modularize action and view management. 
+	Makes request handling extensible and improves code modularity and maintainability. 
+	In plain Java EE application, Servlets can be used as Application Controller. 
+	Spring provides @Controller to annotate Application Controllers.
+	
+3)	Context Object 
+	Used to share state between requests or session or application in a protocol independent way.
+	
+4)	Business Delegate 
+	Decouples the presentation layer from business services. 
+	Hides the implementation details of business services from the presentation layer. 
+	Translates service-level exceptions into application-level exceptions. 
+	Caches results.
+5)	Service Locator 
+	Locate business components and services. 
+	Business Delegate can use Service Locator to obtain Session Façade instance. 
+	It can be used by JMS clients to look up JMS components. 
+	JNDI code is written in Service Locator.
+	
+6)	Session Façade 
+	Encapsulates business layer components and exposes coarse-grained service 
+	to Business Delegate. 
+	Reduces coupling between Business Delegate and business layer components. 
+	Aggregates and exposes Application Services to Business Delegate. 
+	The Session Façade takes care of transactions and security.
+	
+7)	Application Service 
+	The business logic is implemented in Application Service and called by the Session Façade. 
+	Use-case specific logic is implemented outside of Business Objects.
+	
+8)	Business Object 
+	Domain model with embedded business logic and validation. 
+	Increases reusability of business logic and avoids duplication of code. 
+	Helps separate persistence logic implemented in Data Access Object from business logic.
+	
+9)	Value List Handler 
+	Used for server side pagination. Search and traverse through large result sets.
+	
+10)	Data Access Object 
+	Encapsulates data access and manipulation.
+	
+11)	Domain Store 
+	Transparently persists the domain model.

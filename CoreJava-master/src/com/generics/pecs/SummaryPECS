@@ -1,0 +1,13 @@
+Summary
+
+Based on above reasoning and examples, let’s summarize our learning in bullet points.
+
+Use the <? extends T> wildcard 
+if you need to retrieve object of type T from a collection.
+
+Use the <? super T> wildcard 
+if you need to put objects of type T in a collection.
+
+If you need to satisfy both things, well, don’t use any wildcard. As simple as it is.
+
+In short, remember the term PECS. Producer extends Consumer super.

@@ -1,0 +1,26 @@
+Structural Design Patterns
+
+1)	Adapter Pattern
+	A class extends another class, takes in an object, 
+	and makes the taken object behave like the extended class.
+	
+2)	Bridge Pattern
+	An abstraction and implementation are in different class hierarchies.
+
+3)	Composite Pattern
+	Assemble groups of objects with the same signature.
+
+4)	Decorator Pattern
+	One class takes in another class, both of which extend the same abstract class, and adds functionality.
+
+5)	Facade Pattern
+	One class has a method that performs a complex process calling several other classes.
+
+6)	Flyweight Pattern
+	The reusable and variable parts of a class are broken into two classes to save resources.
+
+7)	Proxy Pattern
+	One class controls the creation of and access to objects in another class.
+
+
+

@@ -1,0 +1,6 @@
+Mediator Pattern in JDK
+
+java.util.Timer class scheduleXXX() methods
+Java Concurrency Executor execute() method.
+java.lang.reflect.Method invoke() method.
+ 

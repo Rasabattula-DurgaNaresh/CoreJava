@@ -1,0 +1,29 @@
+The other type of data structures are what's called Node based data structures. 
+Instead of storing data in it's raw format, Node based data structures store nodes, which in turn store the data. 
+Think of nodes as being elements, which may have one or more pointers to other nodes.
+
+Yes, I did say the "pointer" word. Many people think that there are no pointers in Java, 
+but just because you don't see them directly, doesn't mean they're not there. 
+In fact, you can treat any object as a pointer.
+
+Thus, the Node structure should have a data element, and a reference to another node (or nodes). 
+Those other nodes which are referenced to, are called child nodes. 
+The node itself is called the parent node (or sometimes a "father" node) in reference to it's children. 
+(nice big happy family)
+
+	Go over the source, notice that it's nothing more than just set and get functions (pretty simple). 
+	The two data members are the data and next. 
+	The data member holds the data of the node, and next holds the pointer to the next node. 
+	Notice that next is of the same type as the class itself; it effectively points to the object of same class!
+
+    The String toString() method is the Java's standard way to print things. 
+    If an object wants to be printed in a special way, it will define this method, 
+    with instructions on how to print this object. 
+    In our case, we just want to print the data. 
+    Adding data to a bunch of quotation marks automatically converts it to type String 
+    (hopefully, our data will also have a toString() method defined on it). 
+    Without this method, we get the actual binary representation of the data members of this class 
+    (not a pretty nor meaningful printout).
+
+    Node based data structures provide for dynamic growing and shrinking, 
+    and are the key to some complex algorithms .

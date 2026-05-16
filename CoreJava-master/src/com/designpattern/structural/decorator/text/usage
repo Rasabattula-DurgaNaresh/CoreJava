@@ -1,0 +1,1 @@
+Decorator pattern is used a lot in Java IO classes, such as FileReader, BufferedReader etc. 

@@ -1,0 +1,156 @@
+1)	What is Entry Object: 
+	Map.Entry is the static nested class that stores the key/value pair that forms one element of HashMap.
+	Entry object stores in the bucket in the following way (hash,key,value,bucketindex) 
+	The main point to note from the above line is that we need hashvalue and bucketindex 
+	besides key to get access to the desired Entry object in HashMap.
+	
+	public class HashMap<K,V>
+	extends AbstractMap<K,V>
+	implements Map<K,V>, Cloneable, java.io.Serializable
+	{
+	    // SOME CODE ,i.e Other methods in HashMap 
+	
+	 1.   public V remove (Object key){
+	 2.       Entry<K,V> e =  removeEntryForKey(key);
+	 3.       return (e==null ? null : e.value);
+	    }
+	 
+	   // SOME CODE ,i.e Other methods in HashMap
+	 
+	}   
+	
+	In the line 2 of remove(key) we are calling method removeEntryForKey(key). 
+	The main purpose of removeEntryForKey(key) method is it removes and returns the entry 
+	associated with the specified key in the HashMap.	
+	There are two possible scenarios for the key object ,
+	1. If key is not null
+	2. If key is null
+	
+2)	 How remove(key) method works internally in Java ?
+	As we know to find the desired Entry object which is to be removed in the HashMap we need hashValue , 
+	key and bucketindex . So remove(key) method calls  removeEntryForKey(key) method  internally , 
+	which calculate the final hashValue of the key object , and then use that hashValue 
+	in the indexFor(int,int) method to find the first entry object in the appropriate bucket. 
+	
+	Since bucket(table) is a LinkedList effectively  , we start traversing from the first entry object 
+	which we got by using indexFor(int,int) method in the bucket. 
+	For each entry object in the bucket we compare whether  hashValue and the key is equal 
+	to the calculated hashValue in the first step and the key passed as a parameter in the remove(key) method.
+	
+	If desired Entry object is found , then we removed that single entry object from the LinkedList. 
+	Removing a single Entry object from the LinkedList is implemented just like removing a single object from the LinkedList.
+	Entry object returned by the removeEntryForKey(key) method is then  stored in the local variable e 
+	of type Entry in the remove(key) method.
+	
+	If(e==null)
+     return null
+	else
+    return value of removed Entry object.
+    
+    public class HashMap<K,V>
+	extends AbstractMap<K,V>
+	implements Map<K,V>, Cloneable, java.io.Serializable
+	{
+	   // SOME CODE ,i.e Other methods in HashMap 
+	    final Entry<K,V>  removeEntryForKey(Object key) {
+	   // Calculate hash value of the key passed as a parameter in remove method 
+	   1.   int hash = (key == null) ? 0 : hash(key. hashCode()); 
+	   // index for returns the first Entry in the appropriate bucket
+	   // Here , table is an array of Entry objects ,i.e.  Entry[] table
+	   2.   int i = indexFor(hash, table.length);
+	   // Below Code to remove a single object from the  simple LinkedList that is 
+	   // removing the desired Entry object from the LinkedList 
+	   3.     Entry<K,V> prev = table[i];
+	   4.     Entry<K,V> e = prev;
+	   5.     while (e != null) {
+	   6.         Entry<K,V> next = e.next;
+	              Object k; 
+	  // If Entry object's key and hash value equal to the above hashvalue and key
+	   7.        if (e.hash == hash &&
+	            ((k = e.key) == key || (key != null && key.equals(k)))) {
+	   8.              modCount++; 
+	   // Reduce size of Entry[] table by 1
+	   9.              size--;
+	    // Remove the Entry object : Two case to remove 
+	   // Case 1 :  only single element in the bucket , then prev==e        
+	   10.             if (prev == e)
+	   11.              table[i] = next; 
+	   // Case 2 : if more than one element present in the bucket ,   
+	   12.             else
+	   13.              prev.next = next; 
+	   // recordRemoval() method is invoked whenever entry is removed from the table
+	   14.             e.recordRemoval(this);
+	   15.             return e;
+	            }
+	   16.         prev = e;
+	   17.         e = next;
+	        } 
+	   18.    return e;
+	    } 
+	  }
+	     // SOME CODE ,i.e Other methods in HashMap 
+	}  
+	
+3)	What is the purpose of calling recordRemoval() method in the removeEntryForKey(key)  
+	since it is the concrete method without any body.
+	recordRemoval() method is a concrete method without any body. 
+	It is invoked whenever the Entry is removed from the table . 
+	Since LinkedHashMap extends HashMap , thus this method is overridden in the LinkedHashMap's Entry 
+	in order to maintain its linked list of entries.
+	
+4)	What is the time complexity of  performing remove operation in HashMap using  remove(key)
+	Best Case time complexity of remove(key)  : O(1)  
+	Worst Case time complexity of remove(key) : O(n)
+	
+5)	What happens if the null key is passed in the remove(key) method ?
+	In line 1 , the value of hash will be 0 .
+	In line 2 , the value of indexFor will return 0 thus i=0.
+	In line 3 , Entry prev = table[0]
+	                Entry prev = null
+	In line 4,  Entry e = null
+	In line 5 , while loop condition returns false
+	In line 18 , return e (which is null)
+	
+	thus null is returned to the remove(key) method , which will in turn return null.  
+	
+6)	 Explain the removeEntryForKey(key) method in HashMap in detail , considering key is not null?   
+	In the line 1 of removeEntryForKey(key),  if the key passed as a parameter is not null then , 
+	it will call hashfunction on the key object , so after key.hashCode() returns hashValue , so line 1 will look like 
+     int hash = hash (hashValue)  
+	we are now applying returned hashvalue into its own hashfunction.	
+	To defend against poor quality hash functions , we are calculating the hashValue again using hash(hashValue) 
+	We have hashValue and key , now we need to find the bucketindex of the desired Entry object 
+	
+	In line 2 , indexFor(int,int) , for the given hashValue, returns the first entry in the appropriate bucket.
+	
+	In line 3 , we start traversing from the first entry in the bucket ,till we get the desired Entry object, 
+	prev is used to store the first entry in the bucket . 
+	Here table is an array of Entry objects i.e Entry[] table .
+	
+	In line 4,  We created an Entry instance variable e which holds the prev value ,
+	i.e, the first entry in the appropriate bucket.
+	
+	Below Explanation is about removing a single object from the simple LinkedList 
+	that is removing the desired Entry object from the LinkedList 
+	
+	In line 5 , We iterate thorugh the Entry[] starting from the e ,till we get the desired Entry object
+	To check if we get the desired Entry object ,we need hashValue , key and bucketindex. 
+	We need to iterate through the bucket and its index one by one 
+	and comparing the hashValue and key of each Entry object. 
+	
+	In line 7  , If condition is true then we get the desired Entry object 
+	which we need to remove from the hashmap object . 
+	
+	Then two cases arises , whether bucket has single Entry object or it has more than one Entry object ,
+
+	If bucket has single Entry object , then,
+	       In line 10 , (prev==e) condition will be true
+	else bucket has more than one Entry object
+	       In line 12 else condition will be run
+	       
+	In line 14  , recordRemoval() method is called on the desired Entry object 
+	whenever the Entry is removed from the table.
+	
+	In line 15 , the removed Entry object is returned to the remove(key) method.
+	
+	

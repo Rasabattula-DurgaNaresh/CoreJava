@@ -1,0 +1,63 @@
+If the data has certain properties, quicksort is one of the fastest, if not, quicksort can be excruciatingly slow. 
+By now, you probably already figured out that bubble sort (covered earlier) is pretty slow; put it another way: 
+forget about using bubble sort for anything important.
+
+Bubble sort tends to be O(n^2); in other words, pretty slow. 
+Now, quicksort can perform quite fast, on average about O(n log n), but it's worst case, is a humiliating O(n^2).
+For quicksort, the worst case is usually when the data is already sorted. 
+There are many algorithms to make this "less likely to occur," but it does happen. 
+(the O notation is paraphrased "on the order of")
+
+ If you need a no-worst-case fast sorting algorithm, then by all means, use heap sort (covered earlier). 
+ In my opinion, heap sort is more elegant than any other sort <it is in place O(n log n) sort>. 
+ However, on average, it does tend to perform twice as slow as quicksort.
+ 
+ Quicksort is naturally recursive. We partition the array into two sub-arrays, 
+ and then re-start the algorithm on each of these sub-arrays. 
+ The partition procedure involves choosing some object (usually, already in the array); 
+ If some other object is greater than the chosen object, it is added to one of the sub-arrays, 
+ if it's less than the chosen object, it's added to another sub-array. 
+ Thus, the entire array is partitioned into two sub-arrays, with one sub-array having 
+ everything that's larger than the chosen object, and the other sub-array having everything that's smaller.
+
+The algorithm is fairly simple, and it's not hard to implement. The tough part is making it fast. 
+The implementation that follows is recursive and is not optimized, 
+which makes this function inherently slow (most sorting functions try to avoid recursion and try to be as fast as possible).
+
+	The sorts starts out by first checking to see if the end pointer is less then or equal to the start pointer. 
+	It if is less, then there is nothing to sort, and we return. 
+	If they are equal, we have only one element to sort, and an element by itself is always already sorted, so we return.
+
+    If we did not return, we make a pick. 
+    In our example, we simply choose the first element in the array to use as our partition element 
+    (some call it pivot element). To some people, this is the most critical point of the sort, 
+    since depending on what element you choose, you'll get either good performance, or bad. 
+    A lot of the times, instead of choosing the first, people choose the last, 
+    or take a median of the first, last and middle elements. 
+    Some even have a random number generator to pick a random element. 
+    However, all these techniques are useless against random data, 
+    in which case, all those tricky approaches can actually prove to worsen results. 
+    Then again, most of the times, they do work quite nicely... 
+    (it really depends on the type of data you are working with)
+
+    After we have picked the element, we setup i and j, and fall into the a for loop. 
+    Inside that loop, we have two inner loops. 
+    Inside the first inner loop, we scan the array looking for the first element 
+    which is larger than our picked element, moving from left to right of the array. 
+    Inside the second inner loop, we scan to find an element smaller than the picked,
+    moving from right to left in the array. Once we've found them (fallen out of both loops), 
+    we check to see if the pointers haven't crossed (since if they did, we are done). 
+    We then swap the elements, and continue on to the next iteration of the loop.
+
+    You should notice that in all these loops, we are doing one simple thing. 
+    We are making sure that only one element gets to it's correct position. 
+    We deal with one element at a time. 
+    After we find that correct position of our chosen element, all we need to do is sort the elements on it's right, 
+    and left sides, and we're done. 
+    You should also notice that the algorithm above is lacking in optimization. 
+    The inner loops, where most of the time takes place are not as optimized as they should be. 
+    However, for the time being, try to understand the algorithm; and we will get back to optimizing a bit later.
+
+    When we fall out of the outer loop, we put our chosen element into it's correct position, 
+    calculate the upper and lower bounds of the left and right arrays (from that chosen elements), 
+    and recursively call the method on these new computed arrays. 

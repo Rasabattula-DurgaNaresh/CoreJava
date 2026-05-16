@@ -1,0 +1,4 @@
+Builder Design Pattern Example in JDK
+
+java.lang.StringBuilder#append() (unsynchronized)
+java.lang.StringBuffer#append() (synchronized)

@@ -1,0 +1,7 @@
+Observer pattern is also called as publish-subscribe pattern. 
+Some of it’s implementations are;
+
+java.util.EventListener in Swing
+javax.servlet.http.HttpSessionBindingListener
+javax.servlet.http.HttpSessionAttributeListener
+ 

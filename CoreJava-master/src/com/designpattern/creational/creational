@@ -1,0 +1,16 @@
+Creational Design Patterns
+
+1)	Abstract Factory Pattern
+	Sets of methods to make various objects.
+	
+2)	Builder Pattern
+	Make and return one object various ways.
+
+3)	Factory Pattern
+	Methods to make and return components of one object various ways.
+	
+4)	Prototype Pattern
+	Make new objects by cloning the objects which you set as prototypes.
+	
+5)	Singleton Pattern
+	A class distributes the only instance of itself.

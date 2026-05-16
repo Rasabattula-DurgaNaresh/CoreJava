@@ -1,0 +1,52 @@
+Stack is a linear data structure which follows a particular order in which the operations are performed. 
+The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+Mainly the following three basic operations are performed in the stack:
+Push: Adds an item in the stack. If the stack is full, then it is said to be an Overflow condition.
+Pop: Removes an item from the stack. The items are popped in the reversed order in which they are pushed. 
+If the stack is empty, then it is said to be an Underflow condition.
+Peek: Get the topmost item.
+
+How to understand a stack practically?
+There are many real life examples of stack. Consider the simple example of plates stacked over one another in canteen. 
+The plate which is at the top is the first one to be removed, i.e. the plate which has 
+been placed at the bottommost position remains in the stack for the longest period of time. 
+So, it can be simply seen to follow LIFO/FILO order.
+
+Implementation:
+There are two ways to implement a stack:
+Using array
+Using linked list
+
+
+	 The pArrayStackInt class is using an array to store it's data. 
+	 The data is int type (for simplicity). There is a head data member, that's the actual array. 
+	 Because we're using an array, with limited size, we need to keep track of it's size, so that we don't overflow it; 
+	 we always look at head.length to check for maximum size.
+
+    The second data member is pointer. Pointer, in here, points to the top of the stack. 
+    It always has the position which had the last insertion, or -1 if the stack is empty.
+
+    The constructor: pArrayStackInt(), accepts the maximum size parameter to set the size of the stack. 
+    The rest of the functions is just routine initialization. 
+    Notice that pointer is initialized to -1, this makes the next position to be filled in an array, 0.
+
+    The isEmpty() function is self explanatory, it returns true if the stack is empty (pointer is -1), and false otherwise. 
+    The return type is boolean.
+
+    The push(int) function is fairly easy to understand too. 
+    First, it checks to see if the next insertion will not overflow the array. 
+    If no danger from overflow, then it inserts. It first increments the pointer and then inserts into 
+    the new location pointed to by the updated pointer. 
+    It could easily be modified to actually make the array grow, but then the whole point of "simplicity" of using an array 
+    will be lost.
+
+    The int pop() function is also very simple. First, it checks to see if stack is not empty, if it is empty, 
+    it will return 0. In general, this is a really bad error to pop of something from an empty stack. 
+    You may want to do something more sensible than simply returning a 0 (an exception throw would not be a bad choice). 
+    I did it this way for the sake of simplicity. Then, it returns the value of the array element 
+    currently pointed to by pointer, and it decrements the pointer. 
+    This way, it is ready for the next push or pop.
+
+    I guess that just about covers it. Stack is very simple and is very basic. 
+    There are tons of useful algorithms which take advantage of this FILO structure.
+    

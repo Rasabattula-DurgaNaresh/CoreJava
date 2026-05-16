@@ -1,0 +1,35 @@
+A queue is a FIFO (First In, First Out) structure. Anything that's inserted first, 
+will be the first to leave (kind of like the real world queues.) 
+This is totally the opposite of what a stack is. 
+With a queue, we need to maintain two pointers, the start and the end. 
+We'll determine when the queue is empty if start and end point to the same element. 
+To determine if the queue is full (since it's an array), we'll have a boolean variable named full. 
+To insert, we'll add one to the start, and mod (the % operator) with the size of the array. 
+To remove, we'll add one to the end, and mod (the % operator) with the size of the array.
+
+	we have four variables, the array, the start and end, and a boolean full. 
+	The constructor pArrayQueue(int maxsize) initializes the queue, and allocates an array for data storage. 
+	
+	The isEmpty() method is self explanatory, it checks to see if start and end are equal; 
+	this can only be in two situations: when the queue is empty, and when the queue is full. 
+	It later checks the full variable and returns whether this queue is empty or not.
+
+    The insert(Object) method, accepts an Object as a parameter, 
+    checks whether the queue is not full, and inserts it. 
+    The insert works by adding one to start, and doing a mod with array.length (the size of the array), 
+    the resulting location is set to the incoming object.
+     We later check to see if this insertion caused the queue to become full, if yes, 
+     we note this by setting the full variable to true.
+
+    The Object remove() method, doesn't accept any parameters, and returns an Object. 
+    It first checks to see if the queue is full, if it is, it sets full to false 
+    (since it will not be full after this removal). 
+    If it's not full, it checks if the queue is empty, by calling isEmpty(). 
+    If it is, the method returns a null, indicating that there's been an error. 
+    This is usually a pretty bad bug inside a program, for it to try to remove something from an empty queue, 
+    so, you might want to do something more drastic in such a situation (like an exception throw). 
+    The method continues by removing the end object from the queue. 
+    The removal is done in the same way insertion was done. 
+    By adding one to the end, and later mod it with array.length (array size), and that position is returned.
+    
+    
